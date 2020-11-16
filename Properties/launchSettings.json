@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Homework": {
+      "commandName": "Project",
+      "commandLineArgs": "Vasili"
+    }
+  }
+}
