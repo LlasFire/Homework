@@ -1,8 +1,7 @@
 {
   "profiles": {
-    "Homework": {
-      "commandName": "Console App",
-      "commandLineArgs": "Vasili"
+    "ConsoleApplication": {
+      "commandName": "Project"
     }
   }
 }
