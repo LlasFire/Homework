@@ -1,28 +1,35 @@
-﻿using System.Windows;
+﻿// <copyright file="MainWindow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WpfApplication
 {
+    using System.Windows;
+
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml.
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// </summary>
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void Send_Name(object sender, RoutedEventArgs e)
         {
-            OutputLabel.Visibility = Visibility.Visible;
+            this.OutputLabel.Visibility = Visibility.Visible;
 
-            if (string.IsNullOrEmpty(NameBox.Text))
+            if (string.IsNullOrEmpty(this.NameBox.Text))
             {
-                OutputLabel.Content = "«Hello, unknown user!»";
+                this.OutputLabel.Content = "«Hello, unknown user!»";
             }
             else
             {
-                OutputLabel.Content = $"«Hello, {NameBox.Text}!»";
+                this.OutputLabel.Content = $"«Hello, {this.NameBox.Text}!»";
             }
         }
     }
