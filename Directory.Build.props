@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+    <PropertyGroup>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Homework.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="$(MSBuildThisFileDirectory)\stylecop.json" Link="stylecop.json" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" ExcludeAssets="All" PrivateAssets="All" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.12.0.21095" ExcludeAssets="All" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" ExcludeAssets="All" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.3.0" ExcludeAssets="All" PrivateAssets="All"/>
+    </ItemGroup>
+</Project>

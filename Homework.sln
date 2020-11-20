@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApplication", "..\WpfApplication\WpfApplication.csproj", "{8D216388-2CE9-48B4-9966-670700A970EC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task_1", "Task_1", "{0A4AB93C-5376-4047-A932-02BA8FD9E21D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{82B9C354-8F9F-42A0-8696-FA920B7F5A8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApplication", "Task_1\WpfApplication\WpfApplication.csproj", "{0B63DAA8-EFED-41AD-8679-7D88E7CFD3E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D1422348-570C-42E1-B1C8-6F371DFE0BFB}"
 EndProject
@@ -30,6 +30,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B63DAA8-EFED-41AD-8679-7D88E7CFD3E0} = {0A4AB93C-5376-4047-A932-02BA8FD9E21D}
+		{A83FF68B-3325-4759-B6F2-4E8385BDCBDE} = {0A4AB93C-5376-4047-A932-02BA8FD9E21D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42FA65EB-D7F1-43FB-8A21-3B54A4D9BE8D}
