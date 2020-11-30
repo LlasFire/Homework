@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleOutput": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\FileSystemVisitorUnitTests\\TestDirectory\\ *bbin*"
+    }
+  }
+}

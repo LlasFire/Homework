@@ -1,0 +1,5 @@
+2020-10-12 16:25:41,337 [41] ERROR AppError [(null)] -    at OCCM.WebApi.Client.Infrastructure.ApiClient`1.ProcessResponse(HttpResponseMessage response, Type returnType, String requestContent)
+   at OCCM.WebApi.Client.Infrastructure.ApiClient`1.Get(Parameters params)
+   at OCCM.WebApi.Client.Infrastructure.ApiClient`1.Invoke(MethodInfo methodInfo, Object[] parameters)
+   at OCCM.WebApi.Client.Referral.Authorization.GetRequests(Int32 )
+   at MSC.CentralIntake.IntakeControls.ClaimIntake.GetPendingRequest(Referral referral)
