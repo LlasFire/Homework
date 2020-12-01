@@ -24,7 +24,12 @@ namespace ConsoleOutput
 
             try
             {
-                var output = string.Join("\r\n", FileSystemVisitor.Search(args[0], args[1]));
+                var visitor = new FileSystemVisitor
+                {
+                    FilterPattern = args[1],
+                    SourcePath = args[0],
+                };
+                var output = string.Join("\r\n", visitor.Search());
 
                 Console.WriteLine($"{output}");
             }

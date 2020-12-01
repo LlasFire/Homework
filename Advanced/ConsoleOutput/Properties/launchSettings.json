@@ -2,7 +2,7 @@
   "profiles": {
     "ConsoleOutput": {
       "commandName": "Project",
-      "commandLineArgs": "..\\..\\..\\..\\FileSystemVisitorUnitTests\\TestDirectory\\ *bbin*"
+      "commandLineArgs": "..\\..\\..\\..\\FileSystemVisitorUnitTests\\TestDirectory\\ !*/bbin/*;*.png;*.dll"
     }
   }
 }
