@@ -29,11 +29,11 @@ namespace Logic
         /// <summary>
         /// Initializes a new instance of the <see cref="FileSystemVisitor"/> class.
         /// </summary>
-        /// <example>
+        /// <remarks>
         /// sourcePath : C:\\Temp .
         /// filterPattern : !*.jpg;!*.temp;!*/bin/* .
         /// or filterPattern : *.jpg;*/obj/* .
-        /// </example>
+        /// </remarks>
         /// <param name="sourcePath">Start folder for search.</param>
         /// <param name="filterPattern">Search pattern.</param>
         public FileSystemVisitor(string sourcePath, string filterPattern)
@@ -54,6 +54,72 @@ namespace Logic
             this.DirectoryFilter = directoryFilter;
             this.SourcePath = sourcePath;
         }
+
+        /// <summary>
+        /// Send message when process had begun.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        public delegate void StartDelegate(string message);
+
+        /// <summary>
+        /// Send message when process is over.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        public delegate void FinishDelegate(string message);
+
+        /// <summary>
+        /// Send message when files are finded.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        public delegate void FilesFindedDelegate(string message);
+
+        /// <summary>
+        /// Send message when directories are finded.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        public delegate void DirectorysFindedDelegate(string message);
+
+        /// <summary>
+        /// Send message when files are filtered.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        public delegate void FilesFilteredDelegate(string message);
+
+        /// <summary>
+        /// Send message when directories are filtered.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        public delegate void DirectorysFilteredDelegate(string message);
+
+        /// <summary>
+        /// Start event.
+        /// </summary>
+        public event StartDelegate Start;
+
+        /// <summary>
+        /// Start event.
+        /// </summary>
+        public event FinishDelegate Finish;
+
+        /// <summary>
+        /// Start event.
+        /// </summary>
+        public event FilesFindedDelegate FilesFinded;
+
+        /// <summary>
+        /// Start event.
+        /// </summary>
+        public event DirectorysFindedDelegate DirectorysFinded;
+
+        /// <summary>
+        /// Start event.
+        /// </summary>
+        public event FilesFilteredDelegate FilesFiltered;
+
+        /// <summary>
+        /// Start event.
+        /// </summary>
+        public event DirectorysFilteredDelegate DirectorysFiltered;
 
         /// <summary>
         /// Gets or sets source path for search.
@@ -135,27 +201,51 @@ namespace Logic
                 throw new DirectoryNotFoundException($"Directory not found: {this.SourcePath}");
             }
 
-            var resultFiles = directory.GetFiles(DefaultFilter, SearchOption.AllDirectories).ToList();
-            var resultDirectory = directory.GetDirectories(DefaultFilter, SearchOption.AllDirectories).ToList();
+            this.Start("The process has begun.");
 
-            (resultDirectory, resultFiles) = this.FilteredByDirectory(resultDirectory, resultFiles);
-            resultFiles = this.FilteredByFile(resultFiles);
+            var files = directory.GetFiles(DefaultFilter, SearchOption.AllDirectories).ToList();
+
+            if (files.Any())
+            {
+                this.FilesFinded("The files had found.");
+            }
+            else
+            {
+                this.FilesFinded("The files hadn't found.");
+            }
+
+            var directories = directory.GetDirectories(DefaultFilter, SearchOption.AllDirectories).ToList();
+
+            if (directories.Any())
+            {
+                this.DirectorysFinded("The directories had found.");
+            }
+            else
+            {
+                this.DirectorysFinded("The directories hadn't found.");
+            }
+
+            (directories, files) = this.FilteredByDirectory(directories, files);
+            files = this.FilteredByFile(files);
 
             if (this.FileFilter != null)
             {
-                resultFiles = resultFiles.Where(this.FileFilter).ToList();
+                files = files.Where(this.FileFilter).ToList();
+                this.FilesFiltered("The files had filtered by lambda expression.");
             }
 
             if (this.DirectoryFilter != null)
             {
-                resultDirectory = resultDirectory.Where(this.DirectoryFilter).ToList();
+                directories = directories.Where(this.DirectoryFilter).ToList();
+                this.DirectorysFiltered("The directories had filtered by lambda expression.");
             }
 
-            var result = resultFiles.Select(f => f.FullName)
-                                    .Concat(resultDirectory.Select(dir => dir.FullName))
+            var result = files.Select(f => f.FullName)
+                                    .Concat(directories.Select(dir => dir.FullName))
                                     .ToList();
             result.Sort();
 
+            this.Finish("The process is over");
             return result;
         }
 
@@ -225,6 +315,8 @@ namespace Logic
 
             files = FilteredEntity(files, includeFilters, excludeFilters).ToList();
             directories = FilteredEntity(directories, includeFilters, excludeFilters).ToList();
+
+            this.DirectorysFiltered("The directories had filtered by search pattern.");
             return (directories, files);
         }
 
@@ -243,6 +335,8 @@ namespace Logic
             }
 
             var (includeFilters, excludeFilters) = GetIncludeExcludeFilters(filters);
+
+            this.FilesFiltered("The files had filtered by search pattern.");
             return FilteredEntity(files, includeFilters, excludeFilters).ToList();
         }
     }

@@ -46,7 +46,7 @@ namespace ProductTemplate
             }
 
             // STEP 3: equivalent data types
-            if (this.GetType() != obj.GetType())
+            if (!(obj is Product))
             {
                 return false;
             }

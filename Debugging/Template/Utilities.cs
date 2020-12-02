@@ -5,8 +5,6 @@
 namespace ProductTemplate
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Practices.Unity.Utility;
 
     /// <summary>
     /// Utilities for product class.
@@ -17,10 +15,12 @@ namespace ProductTemplate
         /// Sorts an array in ascending order using bubble sort.
         /// </summary>
         /// <param name="numbers">Numbers to sort.</param>
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Guard.ArgumentNotNull throwing exception")]
         public static void Sort(int[] numbers)
         {
-            Guard.ArgumentNotNull(numbers, nameof(numbers));
+            if (numbers is null)
+            {
+                throw new ArgumentNullException(nameof(numbers));
+            }
 
             var initialIndex = 0;
             for (int i = initialIndex; i < numbers.Length; i++)
@@ -45,11 +45,18 @@ namespace ProductTemplate
         /// <param name="predicate">Product predicate.</param>
         /// <returns>If match found then returns index of product in <paramref name="products"/>
         /// otherwise -1.</returns>
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Guard.ArgumentNotNull throwing exception")]
         public static int IndexOf(Product[] products, Predicate<Product> predicate)
         {
-            Guard.ArgumentNotNull(products, nameof(products));
-            Guard.ArgumentNotNull(predicate, nameof(predicate));
+            if (products is null)
+            {
+                throw new ArgumentNullException(nameof(products));
+            }
+
+            if (predicate is null)
+            {
+                throw new ArgumentNullException(nameof(products));
+            }
+
             var wrongAnswer = -1;
 
             for (int i = 0; i < products.Length; i++)

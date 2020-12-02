@@ -39,11 +39,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOutput", "Advanced\ConsoleOutput\ConsoleOutput.csproj", "{2D357EE5-3E19-40EF-BA3E-4963200875A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleOutput", "Advanced\ConsoleOutput\ConsoleOutput.csproj", "{2D357EE5-3E19-40EF-BA3E-4963200875A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Advanced\Logic\Logic.csproj", "{2D3B6EF9-DF0F-4B51-B13A-DA7468214CEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Advanced\Logic\Logic.csproj", "{2D3B6EF9-DF0F-4B51-B13A-DA7468214CEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemVisitorUnitTests", "Advanced\FileSystemVisitorUnitTests\FileSystemVisitorUnitTests.csproj", "{5CA5FFC8-A01E-497A-9D2F-7A017867D5EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemVisitorUnitTests", "Advanced\FileSystemVisitorUnitTests\FileSystemVisitorUnitTests.csproj", "{5CA5FFC8-A01E-497A-9D2F-7A017867D5EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,19 +18,31 @@ namespace Homework
         /// <param name="args">The list of arguments.</param>
         public static void Main(string[] args)
         {
-            var nameIndex = 0;
+            var name = string.Empty;
 
             // Test if input arguments were supplied.
             if (!args.Any() || args == null)
             {
-                var output = $" You didn't enter your name.{Environment.NewLine} Hello, unknown user!";
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(output);
+                Console.WriteLine("Please enter your name and press the Enter button.");
+
+                while (string.IsNullOrEmpty(name))
+                {
+                    name = Console.ReadLine();
+
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        Console.WriteLine("You should enter your name!");
+                    }
+                }
+
+                Console.WriteLine($"Hello, {name}!");
                 Console.ReadKey();
                 return;
             }
 
-            Console.WriteLine($"Hello, {args[nameIndex]}!");
+            name = string.Join(" ", args);
+            Console.WriteLine($"Hello, {name}!");
             Console.ReadKey();
         }
     }

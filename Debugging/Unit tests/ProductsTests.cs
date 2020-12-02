@@ -19,7 +19,7 @@ namespace UnitTests
         /// Test method Sort.
         /// </summary>
         [Test]
-        public void Sort_WhenDataIsValid_ShouldAscendingSorted()
+        public void Sort_DataIsValid_ShouldAscendingSorted()
         {
             // Arrange
             var numbers = new[] { 4, 2, 1, 3, -5 };
@@ -34,7 +34,7 @@ namespace UnitTests
         /// Test method Sort.
         /// </summary>
         [Test]
-        public void Sort_WhenParameterIsNull_ShouldThrowsArgumentNullException()
+        public void Sort_ParameterIsNull_ShouldThrowsArgumentNullException()
         {
             // Arrange
 
@@ -48,7 +48,7 @@ namespace UnitTests
         /// Test method Sort.
         /// </summary>
         [Test]
-        public void Sort_WhenEmptyArray_ShouldReturnsEmptyArray()
+        public void Sort_EmptyArray_ShouldReturnsEmptyArray()
         {
             // Arrange
             var numbers = Array.Empty<int>();
@@ -64,7 +64,7 @@ namespace UnitTests
         /// Test method IndexOf.
         /// </summary>
         [Test]
-        public void IndexOf_WhenDataIsValid_ShouldReturnsProduct()
+        public void IndexOf_DataIsValid_ShouldReturnsProduct()
         {
             // Arrange
             var products = new Product[]
@@ -86,7 +86,7 @@ namespace UnitTests
         /// Test method IndexOf.
         /// </summary>
         [Test]
-        public void IndexOf_WhenNoMatch_ShouldReturnMinusOne()
+        public void IndexOf_NoMatch_ShouldReturnMinusOne()
         {
             // Arrange
             var products = new Product[]
@@ -108,7 +108,7 @@ namespace UnitTests
         /// Test method IndexOf.
         /// </summary>
         [Test]
-        public void IndexOf_WhenEqualsWithNull_ShouldReturnMinusOne()
+        public void IndexOf_EqualsWithNull_ShouldReturnMinusOne()
         {
             // Arrange
             var products = new Product[]
@@ -129,7 +129,7 @@ namespace UnitTests
         /// Test method IndexOf.
         /// </summary>
         [Test]
-        public void IndexOf_WhenProductHasIncorrectType_ShouldReturnsMinusOne()
+        public void IndexOf_ProductHasIncorrectType_ShouldReturnsMinusOne()
         {
             // Arrange
             var products = new Product[]
@@ -152,7 +152,7 @@ namespace UnitTests
         /// </summary>
         [Test]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "It's a normal test validation")]
-        public void IndexOf_WhenProductsIsNull_ShouldThrowsArgumentNullException()
+        public void IndexOf_ProductsIsNull_ShouldThrowsArgumentNullException()
         {
             // Arrange
 
@@ -172,7 +172,7 @@ namespace UnitTests
         /// </summary>
         [Test]
         [SuppressMessage("Minor Code Smell", "S1481:Unused local variables should be removed", Justification = "It's a normal test validation")]
-        public void IndexOf_WhenPredicateIsNull_ShouldThrowsArgumentNullException()
+        public void IndexOf_PredicateIsNull_ShouldThrowsArgumentNullException()
         {
             // Arrange
 
@@ -191,7 +191,7 @@ namespace UnitTests
         /// Test method IndexOf.
         /// </summary>
         [Test]
-        public void IndexOf_WhenArrayIsEmpty_ShouldReturnsMinusOne()
+        public void IndexOf_ArrayIsEmpty_ShouldReturnsMinusOne()
         {
             // Arrange
             var products = Array.Empty<Product>();
