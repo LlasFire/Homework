@@ -33,18 +33,17 @@ namespace ConsoleOutput
                     FilterPattern = args[1],
                 };
 
-                visitor.Start += OutputVisitorMessages;
-                visitor.Finish += OutputVisitorMessages;
-                visitor.DirectorysFiltered += OutputVisitorMessages;
-                visitor.FilesFiltered += OutputVisitorMessages;
-                visitor.DirectorysFinded += OutputVisitorMessages;
-                visitor.FilesFinded += OutputVisitorMessages;
+                Subscribe(visitor);
 
                 var output = string.Join("\r\n", visitor.Search());
 
                 Console.WriteLine(output);
             }
             catch (DirectoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -55,6 +54,16 @@ namespace ConsoleOutput
         private static void OutputVisitorMessages(string message)
         {
             Console.WriteLine(message);
+        }
+
+        private static void Subscribe(FileSystemVisitor visitor)
+        {
+            visitor.Start += OutputVisitorMessages;
+            visitor.Finish += OutputVisitorMessages;
+            visitor.DirectorysFiltered += OutputVisitorMessages;
+            visitor.FilesFiltered += OutputVisitorMessages;
+            visitor.DirectorysFinded += OutputVisitorMessages;
+            visitor.FilesFinded += OutputVisitorMessages;
         }
     }
 }

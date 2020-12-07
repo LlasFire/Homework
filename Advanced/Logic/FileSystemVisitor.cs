@@ -16,14 +16,40 @@ namespace Logic
     /// <exception cref="DirectoryNotFoundException">When directory not found.</exception>
     public class FileSystemVisitor
     {
+        /// <summary>
+        /// Excluding all files from search.
+        /// </summary>
+        public const string ExcludeFileFilter = "!*.*";
+
+        /// <summary>
+        /// Excluding all directories from search.
+        /// </summary>
+        public const string ExcludeDirectoryFilter = @"!*\*\*";
+
         private const string DefaultFilter = "*";
         private const string ExcludePrefix = "!";
+        private string filterPattern;
+        private string sourcePath;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileSystemVisitor"/> class.
         /// </summary>
         public FileSystemVisitor()
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileSystemVisitor"/> class.
+        /// </summary>
+        /// <remarks>
+        /// sourcePath : C:\\Temp .
+        /// filterPattern : !*.jpg;!*.temp;!*/bin/* .
+        /// or filterPattern : *.jpg;*/obj/* .
+        /// </remarks>
+        /// <param name="sourcePath">Start folder for search.</param>
+        public FileSystemVisitor(string sourcePath)
+        {
+            this.SourcePath = sourcePath;
         }
 
         /// <summary>
@@ -94,37 +120,53 @@ namespace Logic
         /// <summary>
         /// Start event.
         /// </summary>
-        public event StartDelegate Start;
+        public event StartDelegate Start = message => { };
 
         /// <summary>
         /// Start event.
         /// </summary>
-        public event FinishDelegate Finish;
+        public event FinishDelegate Finish = message => { };
 
         /// <summary>
         /// Start event.
         /// </summary>
-        public event FilesFindedDelegate FilesFinded;
+        public event FilesFindedDelegate FilesFinded = message => { };
 
         /// <summary>
         /// Start event.
         /// </summary>
-        public event DirectorysFindedDelegate DirectorysFinded;
+        public event DirectorysFindedDelegate DirectorysFinded = message => { };
 
         /// <summary>
         /// Start event.
         /// </summary>
-        public event FilesFilteredDelegate FilesFiltered;
+        public event FilesFilteredDelegate FilesFiltered = message => { };
 
         /// <summary>
         /// Start event.
         /// </summary>
-        public event DirectorysFilteredDelegate DirectorysFiltered;
+        public event DirectorysFilteredDelegate DirectorysFiltered = message => { };
 
         /// <summary>
         /// Gets or sets source path for search.
         /// </summary>
-        public string SourcePath { get; set; }
+        public string SourcePath
+        {
+            get
+            {
+               return this.sourcePath;
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("The value mustn't be null or empty.", nameof(value));
+                }
+
+                this.sourcePath = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets filterPattern for funded files.
@@ -139,7 +181,26 @@ namespace Logic
         /// <summary>
         /// Gets or sets string filters pattern for search.
         /// </summary>
-        public string FilterPattern { get; set; } = DefaultFilter;
+        /// <exception cref="ArgumentException">If value is null or empty.</exception>
+        public string FilterPattern
+        {
+            get
+            {
+               return string.IsNullOrEmpty(this.filterPattern)
+                      ? DefaultFilter
+                      : this.filterPattern;
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("The value mustn't be null or empty. Default value is *", nameof(value));
+                }
+
+                this.filterPattern = value;
+            }
+        }
 
         /// <summary>
         /// Get folder filters by Regex from FilterPattern string.
@@ -157,12 +218,17 @@ namespace Logic
 
             // For find last / symbol
             var replaceRegex = new Regex(@"\\(?:.(?!\\))*$");
+            var filters = this.FilterPattern.Split(';');
+
+            if (filters.Any(f => f.Contains(ExcludeDirectoryFilter)))
+            {
+                return new List<string> { ExcludeDirectoryFilter };
+            }
 
             // delete chars *, then replace / to \, and then delete last \ symbol
-            return this.FilterPattern.Split(';')
-                               .Where(dir => folderFilterExpression.IsMatch(dir))
-                               .Select(dir => replaceRegex.Replace(dir.Replace("/", @"\").Replace("*", string.Empty), string.Empty))
-                               .ToList();
+            return filters.Where(dir => folderFilterExpression.IsMatch(dir))
+                          .Select(dir => replaceRegex.Replace(dir.Replace("/", @"\").Replace("*", string.Empty), string.Empty))
+                          .ToList();
         }
 
         /// <summary>
@@ -178,11 +244,16 @@ namespace Logic
 
             // For find file filters like .png or !.temp or temp.*
             var fileFilterExpression = new Regex(@"(!\*|\*|\w+)\.(\w|\*)+");
+            var filters = this.FilterPattern.Split(';');
 
-            return this.FilterPattern.Split(';')
-                               .Where(f => fileFilterExpression.IsMatch(f))
-                               .Select(f => f.Replace("*", string.Empty))
-                               .ToList();
+            if (filters.Any(f => f.Contains(ExcludeFileFilter)))
+            {
+                return new List<string> { ExcludeFileFilter };
+            }
+
+            return filters.Where(f => fileFilterExpression.IsMatch(f))
+                          .Select(f => f.Replace("*", string.Empty))
+                          .ToList();
         }
 
         /// <summary>
@@ -240,8 +311,8 @@ namespace Logic
                 this.DirectorysFiltered("The directories had filtered by lambda expression.");
             }
 
-            var result = files.Select(f => f.FullName)
-                                    .Concat(directories.Select(dir => dir.FullName))
+            var result = files.Select(f => f.Name)
+                                    .Concat(directories.Select(dir => dir.Name))
                                     .ToList();
             result.Sort();
 
@@ -311,6 +382,12 @@ namespace Logic
                 return (directories, files);
             }
 
+            if (filters.Any(f => f.Equals(ExcludeDirectoryFilter)))
+            {
+                this.DirectorysFiltered("Directories were excluded from the search.");
+                return (new List<DirectoryInfo>(), files);
+            }
+
             var (includeFilters, excludeFilters) = GetIncludeExcludeFilters(filters);
 
             files = FilteredEntity(files, includeFilters, excludeFilters).ToList();
@@ -332,6 +409,12 @@ namespace Logic
             if (!filters.Any())
             {
                 return files;
+            }
+
+            if (filters.Any(f => f.Equals(ExcludeFileFilter)))
+            {
+                this.FilesFiltered("Files were excluded from the search.");
+                return new List<FileInfo>();
             }
 
             var (includeFilters, excludeFilters) = GetIncludeExcludeFilters(filters);
