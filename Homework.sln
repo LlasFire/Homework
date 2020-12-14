@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Advanced\Logic\Log
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemVisitorUnitTests", "Advanced\FileSystemVisitorUnitTests\FileSystemVisitorUnitTests.csproj", "{5CA5FFC8-A01E-497A-9D2F-7A017867D5EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowFirstInputSymbol", "Exception Handling\ShowFirstInputSymbol\ShowFirstInputSymbol\ShowFirstInputSymbol.csproj", "{C9441F27-7E96-4A02-830F-43A82D7D2608}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{5CA5FFC8-A01E-497A-9D2F-7A017867D5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CA5FFC8-A01E-497A-9D2F-7A017867D5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CA5FFC8-A01E-497A-9D2F-7A017867D5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9441F27-7E96-4A02-830F-43A82D7D2608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9441F27-7E96-4A02-830F-43A82D7D2608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9441F27-7E96-4A02-830F-43A82D7D2608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9441F27-7E96-4A02-830F-43A82D7D2608}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{2D357EE5-3E19-40EF-BA3E-4963200875A7} = {E9CBE152-6216-474C-983F-4C26A20516A7}
 		{2D3B6EF9-DF0F-4B51-B13A-DA7468214CEA} = {E9CBE152-6216-474C-983F-4C26A20516A7}
 		{5CA5FFC8-A01E-497A-9D2F-7A017867D5EB} = {E9CBE152-6216-474C-983F-4C26A20516A7}
+		{C9441F27-7E96-4A02-830F-43A82D7D2608} = {511080CC-3597-4A95-B5A6-841733277347}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42FA65EB-D7F1-43FB-8A21-3B54A4D9BE8D}
