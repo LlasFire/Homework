@@ -27,8 +27,9 @@ namespace ShowFirstInputSymbol
         /// </summary>
         public static void Main()
         {
-            Console.WriteLine($"Enter the text, then type {Key} (with quotes)");
+            Console.WriteLine("This app will output every first character of the string you enter to the console.");
             Console.WriteLine("If you enter an empty string, the app will not output the first character of that string.");
+            Console.WriteLine($"Enter the text, then type {Key} (with quotes)");
 
             var input = new StringBuilder();
             var cancelFlag = false;
