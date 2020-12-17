@@ -51,9 +51,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser", "Exception Handlin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserTests", "Exception Handling\Parser\Tests\ParserTests\ParserTests.csproj", "{4DB73F6B-B647-4ED0-B7A3-240F0A9ED9D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTask", "Exception Handling\UserTask\UserTask\UserTask.csproj", "{1D813792-B004-4F25-8902-EEEB9CE9D5F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTask", "Exception Handling\UserTask\UserTask\UserTask.csproj", "{1D813792-B004-4F25-8902-EEEB9CE9D5F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTaskTests", "Exception Handling\UserTask\Tests\UserTaskTests\UserTaskTests.csproj", "{08E96902-E4D6-4DED-B14D-26854F330BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTaskTests", "Exception Handling\UserTask\Tests\UserTaskTests\UserTaskTests.csproj", "{08E96902-E4D6-4DED-B14D-26854F330BCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkWithLinq", "LINQ\WorkWithLinq\WorkWithLinq.csproj", "{7622D301-9CDE-46EF-A828-6346F1407477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqTests", "LINQ\LinqTests\LinqTests.csproj", "{4BB45DEB-F427-4922-9AF2-AD7BA36600D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +117,14 @@ Global
 		{08E96902-E4D6-4DED-B14D-26854F330BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08E96902-E4D6-4DED-B14D-26854F330BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08E96902-E4D6-4DED-B14D-26854F330BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7622D301-9CDE-46EF-A828-6346F1407477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7622D301-9CDE-46EF-A828-6346F1407477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7622D301-9CDE-46EF-A828-6346F1407477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7622D301-9CDE-46EF-A828-6346F1407477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BB45DEB-F427-4922-9AF2-AD7BA36600D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BB45DEB-F427-4922-9AF2-AD7BA36600D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BB45DEB-F427-4922-9AF2-AD7BA36600D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB45DEB-F427-4922-9AF2-AD7BA36600D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +143,8 @@ Global
 		{4DB73F6B-B647-4ED0-B7A3-240F0A9ED9D1} = {511080CC-3597-4A95-B5A6-841733277347}
 		{1D813792-B004-4F25-8902-EEEB9CE9D5F4} = {511080CC-3597-4A95-B5A6-841733277347}
 		{08E96902-E4D6-4DED-B14D-26854F330BCD} = {511080CC-3597-4A95-B5A6-841733277347}
+		{7622D301-9CDE-46EF-A828-6346F1407477} = {A9561CC0-7001-4D3F-9D3E-1047D062674F}
+		{4BB45DEB-F427-4922-9AF2-AD7BA36600D7} = {A9561CC0-7001-4D3F-9D3E-1047D062674F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42FA65EB-D7F1-43FB-8A21-3B54A4D9BE8D}
