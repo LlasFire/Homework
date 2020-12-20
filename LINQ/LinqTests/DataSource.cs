@@ -147,7 +147,7 @@ namespace LinqTests.Tests
         /// <summary>
         /// List of customers, prepared for testing.
         /// </summary>
-        public static List<Customer> Customers = new List<Customer>
+        public static readonly List<Customer> Customers = new List<Customer>
         {
             new Customer
             {

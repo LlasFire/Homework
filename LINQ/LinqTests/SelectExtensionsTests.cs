@@ -40,6 +40,9 @@ namespace LinqTests.Tests
             Assert.That(() => SelectExtensions.Linq1(null, 42).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq2 method test.
+        /// </summary>
         [Test]
         public void Linq2_CustomersAndSuppliers_2CustomersHaveSuppliers()
         {
@@ -56,12 +59,18 @@ namespace LinqTests.Tests
             }
         }
 
+        /// <summary>
+        /// Linq2 method test when customers and suppliers are null.
+        /// </summary>
         [Test]
         public void Linq2_NullCustomer_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq2(null, null).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq2UsingGroup method test.
+        /// </summary>
         [Test]
         public void Linq2UsingGroup_CustomersAndSuppliers_2CustomersHaveSuppliers()
         {
@@ -70,6 +79,11 @@ namespace LinqTests.Tests
             Assert.That(() => result.Count, Is.EqualTo(DataSource.Customers.Count));
             foreach (var (customer, suppliers) in result)
             {
+                if (suppliers.All(x => x is null))
+                {
+                    continue;
+                }
+
                 foreach (var supplier in suppliers)
                 {
                     StringAssert.AreEqualIgnoringCase(customer.City, supplier.City);
@@ -78,12 +92,20 @@ namespace LinqTests.Tests
             }
         }
 
+        /// <summary>
+        /// Linq2UsingGroup method test when customers and suppliers are null.
+        /// </summary>
         [Test]
         public void Linq2UsingGroup_NullCustomer_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq2UsingGroup(null, null).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq3 method test.
+        /// </summary>
+        /// <param name="limit">Limit value.</param>
+        /// <returns>Expected result.</returns>
         [TestCase(800, ExpectedResult = 2)]
         [TestCase(0, ExpectedResult = 5)]
         [TestCase(-1, ExpectedResult = 5)]
@@ -93,12 +115,18 @@ namespace LinqTests.Tests
             return SelectExtensions.Linq3(DataSource.Customers, limit).Count();
         }
 
+        /// <summary>
+        /// Linq3 method test when customers  are null.
+        /// </summary>
         [Test]
         public void Linq3_NullCustomer_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq3(null, 42).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq4 method test.
+        /// </summary>
         [Test]
         public void Linq4_Customers_CustomersAndDateOfEntry()
         {
@@ -111,12 +139,18 @@ namespace LinqTests.Tests
             }
         }
 
+        /// <summary>
+        /// Linq4 method test when customers are null.
+        /// </summary>
         [Test]
         public void Linq4_NullCustomer_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq4(null).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq5 method test.
+        /// </summary>
         [Test]
         public void Linq5_Customers_CustomersAndDateOfEntry()
         {
@@ -135,24 +169,36 @@ namespace LinqTests.Tests
             Assert.That(result[4].customer, Is.EqualTo(DataSource.Customers[0]));
         }
 
+        /// <summary>
+        /// Linq5 method test when customers are null.
+        /// </summary>
         [Test]
         public void Linq5_NullCustomer_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq5(null).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq6 method test.
+        /// </summary>
         [Test]
         public void Linq6_Customers_Returns5()
         {
             Assert.That(SelectExtensions.Linq6(DataSource.Customers).Count(), Is.EqualTo(5));
         }
 
+        /// <summary>
+        /// Linq6 method test when customers are null.
+        /// </summary>
         [Test]
         public void Linq6_NullCustomer_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq6(null).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq7 method test.
+        /// </summary>
         [Test]
         public void Linq7_Customers_Returns5()
         {
@@ -166,12 +212,12 @@ namespace LinqTests.Tests
                         new Linq7UnitsInStockGroup
                         {
                             UnitsInStock = 39,
-                            Prices = new[] { 18.0000M, 19.0000M },
+                            Prices = new[] { 19.0000M },
                         },
                         new Linq7UnitsInStockGroup
                         {
                             UnitsInStock = 17,
-                            Prices = new[] { 18.0000M, 19.0000M },
+                            Prices = new[] { 18.0000M },
                         },
                     },
                 },
@@ -183,12 +229,12 @@ namespace LinqTests.Tests
                         new Linq7UnitsInStockGroup
                         {
                             UnitsInStock = 15,
-                            Prices = new[] { 10.0000M, 30.0000M, 40.0000M },
+                            Prices = new[] { 10.0000M, 40.0000M },
                         },
                         new Linq7UnitsInStockGroup
                         {
                             UnitsInStock = 13,
-                            Prices = new[] { 10.0000M, 30.0000M, 40.0000M },
+                            Prices = new[] { 30.0000M },
                         },
                     },
                 },
@@ -208,12 +254,18 @@ namespace LinqTests.Tests
             }
         }
 
+        /// <summary>
+        /// Linq7 method test when products are null.
+        /// </summary>
         [Test]
         public void Linq7_NullProducts_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq7(null).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq8 method test.
+        /// </summary>
         [Test]
         public void Linq8_Products_ReturnsGroupedProducts()
         {
@@ -228,19 +280,25 @@ namespace LinqTests.Tests
             Assert.That(expensiveProducts.Count(), Is.EqualTo(1));
         }
 
+        /// <summary>
+        /// Linq8 method test when products are null.
+        /// </summary>
         [Test]
         public void Linq8_NullProducts_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq8(null, 42, 42, 42).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq9 method test.
+        /// </summary>
         [Test]
         public void Linq9_Customers_ReturnsGroupedProducts()
         {
             var expected = new List<(string city, int averageIncome, int averageIntensity)>
             {
-                ("Berlin", 2022, 3),
-                ("Mexico D.F.", 680, 2),
+                ("Berlin", 674, 3),
+                ("Mexico D.F.", 292, 2),
                 ("London", 690, 1),
             };
 
@@ -254,12 +312,18 @@ namespace LinqTests.Tests
             }
         }
 
+        /// <summary>
+        /// Linq9 method test when customers are null.
+        /// </summary>
         [Test]
         public void Linq9_NullCustomers_ThrowsArgumentNullException()
         {
             Assert.That(() => SelectExtensions.Linq9(null).ToList(), Throws.ArgumentNullException);
         }
 
+        /// <summary>
+        /// Linq9 method test.
+        /// </summary>
         [Test]
         public void Linq10_Suppliers_ReturnsAggregateString()
         {
@@ -267,6 +331,9 @@ namespace LinqTests.Tests
             StringAssert.AreEqualIgnoringCase("UKUSAJapanSpainBrazilSwedenGermanyAustralia", result);
         }
 
+        /// <summary>
+        /// Linq10 method test when suppliers are null.
+        /// </summary>
         [Test]
         public void Linq10_NullSuppliers_ThrowsArgumentNullException()
         {
