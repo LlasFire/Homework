@@ -27,7 +27,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for a specified class.
         /// </summary>
         [Test]
         public void AddTypeT_SingleLoggerRegistration_ReturnLogger()
@@ -41,7 +41,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for Export attribute.
         /// </summary>
         [Test]
         public void AddTypeTandTBase_SingleICustomerDALRegistration_ReturnICustomerDAL()
@@ -55,7 +55,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for ImportConstructor attribute.
         /// </summary>
         [Test]
         public void AddTypeTandTBase_ImportConstructor_ReturnCustomerBLL()
@@ -71,7 +71,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for Import attribute.
         /// </summary>
         [Test]
         public void AddTypeTandTBase_Import_ReturnCustomerBLL2()
@@ -91,7 +91,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for Export attribute.
         /// </summary>
         [Test]
         public void GetT_NotRegistred_ThrowsError()
@@ -100,7 +100,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for ImportConstructor attribute.
         /// </summary>
         [Test]
         public void GetT_NoDependencies_ThrowsError()
@@ -109,7 +109,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for ImportConstructor attribute.
         /// </summary>
         [Test]
         public void GetT_NotEnoughDependenciesForImportConstructor_ThrowsError()
@@ -119,7 +119,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for Import attribute.
         /// </summary>
         [Test]
         public void GetT_NotEnoughDependenciesForImport_ThrowsError()
@@ -129,7 +129,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for ImportConstructor attribute.
         /// </summary>
         [Test]
         public void AddAssembly_ImportConstructor_ReturnCustomerBLL()
@@ -143,7 +143,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for Import attribute.
         /// </summary>
         [Test]
         public void AddAssembly_Import_ReturnCustomerBLL2()
@@ -161,7 +161,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for a specified class.
         /// </summary>
         [Test]
         public void AddAssembly_GetLogger_ReturnLogger()
@@ -175,7 +175,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for Export attribute.
         /// </summary>
         [Test]
         public void AddAssembly_GetICustomerDAL_ReturnICustomerDAL()

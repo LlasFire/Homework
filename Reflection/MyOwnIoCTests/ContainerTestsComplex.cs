@@ -27,7 +27,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for specified class.
         /// </summary>
         [Test]
         public void AddTypeT_TryRegisterLoggerTwice_ThrowsError()
@@ -42,7 +42,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for Export attribute.
         /// </summary>
         [Test]
         public void AddTypeT_TryRegisterInterface_ThrowsError()
@@ -56,7 +56,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Positive test for Export attribute.
         /// </summary>
         [Test]
         public void AddTypeTandTBase_SingleCustomerDALRegistration_ReturnCustomerDAL()
@@ -70,7 +70,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for Export attribute.
         /// </summary>
         [Test]
         public void AddTypeTandTBase_TryRegisterICustomerDALTwice_ThrowsError()
@@ -85,7 +85,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for Export attribute.
         /// </summary>
         [Test]
         public void AddTypeTandTBase_TryRegisterInterface_ThrowsError()
@@ -99,7 +99,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test with add assemblies.
         /// </summary>
         [Test]
         public void AddAssembly_AssemblyWithDependenciesTwice_ThrowsError()
@@ -114,7 +114,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test with add assemblies.
         /// </summary>
         [Test]
         public void AddAssembly_AssemblyWithoutDependencies_ThrowsError()
@@ -128,7 +128,7 @@ namespace MyOwnIoCTests
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test with add assemblies.
         /// </summary>
         [Test]
         public void AddAssembly_AssemblyWithNotEnoughDependencies_ThrowsError()
