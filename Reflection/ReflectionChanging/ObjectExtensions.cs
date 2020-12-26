@@ -47,21 +47,11 @@ namespace ReflectionChanging
             }
 
             var resultFields = new List<FieldInfo>();
+            GetAllHiddenFieldsRecursive(type, resultFields);
 
-            var fields = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
-            var parentfields = type.BaseType?.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
-
-            if (fields.Any())
-            {
-                resultFields.AddRange(fields);
-            }
-
-            if (parentfields != null && parentfields.Any())
-            {
-                resultFields.AddRange(parentfields);
-            }
-
-            var hiddenField = resultFields.FirstOrDefault(f => f.FieldType == property.PropertyType && f.Name.Contains($"<{property.Name}>"));
+            // Find hidden field by type and special name pattern <PropertyName>k__BackingField
+            var hiddenField = resultFields.FirstOrDefault(f => f.FieldType == property.PropertyType &&
+                                                               f.Name.Contains($"<{property.Name}>"));
 
             if (hiddenField != null)
             {
@@ -93,6 +83,26 @@ namespace ReflectionChanging
             }
 
             obj.SetFieldValue(filedName, newValue, Flags.AllMembers);
+        }
+
+        /// <summary>
+        /// Method for recursive getting all hidden fields for type and his BaseTypes.
+        /// </summary>
+        /// <param name="type">Start type.</param>
+        /// <param name="fieldInfos">List of field info objects for collecting fields.</param>
+        private static void GetAllHiddenFieldsRecursive(Type type, List<FieldInfo> fieldInfos)
+        {
+            var fields = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+
+            if (fields.Any())
+            {
+                fieldInfos.AddRange(fields);
+            }
+
+            if (type.BaseType != null)
+            {
+                GetAllHiddenFieldsRecursive(type.BaseType, fieldInfos);
+            }
         }
     }
 }
