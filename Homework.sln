@@ -63,9 +63,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyOwnIoC", "Reflection\MyOw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyOwnIoCTests", "Reflection\MyOwnIoCTests\MyOwnIoCTests.csproj", "{F895D295-45CC-4912-9475-9CBEE75DDDE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionChanging", "Reflection\ReflectionChanging\ReflectionChanging.csproj", "{3CAF8B08-3ED3-4A9B-986A-16A929A6FFA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionChanging", "Reflection\ReflectionChanging\ReflectionChanging.csproj", "{3CAF8B08-3ED3-4A9B-986A-16A929A6FFA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionChangingTests", "Reflection\ReflectionChangingTests\ReflectionChangingTests.csproj", "{E3990FF1-1906-4571-AF2A-B4CDF3DE3041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionChangingTests", "Reflection\ReflectionChangingTests\ReflectionChangingTests.csproj", "{E3990FF1-1906-4571-AF2A-B4CDF3DE3041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Structures", "Data structures\Structures\Structures.csproj", "{5CA0B5BF-0068-4CCE-AB86-FAA74A57CEF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructuresTests", "Data structures\StructuresTests\StructuresTests.csproj", "{3CFE4798-20B8-44E4-AA39-254E9753B877}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +153,14 @@ Global
 		{E3990FF1-1906-4571-AF2A-B4CDF3DE3041}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3990FF1-1906-4571-AF2A-B4CDF3DE3041}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3990FF1-1906-4571-AF2A-B4CDF3DE3041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA0B5BF-0068-4CCE-AB86-FAA74A57CEF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA0B5BF-0068-4CCE-AB86-FAA74A57CEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA0B5BF-0068-4CCE-AB86-FAA74A57CEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA0B5BF-0068-4CCE-AB86-FAA74A57CEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFE4798-20B8-44E4-AA39-254E9753B877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFE4798-20B8-44E4-AA39-254E9753B877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFE4798-20B8-44E4-AA39-254E9753B877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFE4798-20B8-44E4-AA39-254E9753B877}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,6 +185,8 @@ Global
 		{F895D295-45CC-4912-9475-9CBEE75DDDE7} = {604CA0D9-05C8-45B0-86DC-F8F64AA05D4D}
 		{3CAF8B08-3ED3-4A9B-986A-16A929A6FFA9} = {604CA0D9-05C8-45B0-86DC-F8F64AA05D4D}
 		{E3990FF1-1906-4571-AF2A-B4CDF3DE3041} = {604CA0D9-05C8-45B0-86DC-F8F64AA05D4D}
+		{5CA0B5BF-0068-4CCE-AB86-FAA74A57CEF7} = {7596E467-9FB8-4D63-B3FC-8CA6DCE0A1B4}
+		{3CFE4798-20B8-44E4-AA39-254E9753B877} = {7596E467-9FB8-4D63-B3FC-8CA6DCE0A1B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42FA65EB-D7F1-43FB-8A21-3B54A4D9BE8D}
