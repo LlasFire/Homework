@@ -1,4 +1,8 @@
-﻿namespace Structures.DoNotChange
+﻿// <copyright file="IHybridFlowProcessor.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Structures.DoNotChange
 {
     /// <summary>
     /// Interface for hybrid flow processor.

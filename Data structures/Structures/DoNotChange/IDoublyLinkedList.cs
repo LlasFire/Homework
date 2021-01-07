@@ -13,7 +13,7 @@ namespace Structures.DoNotChange
     public interface IDoublyLinkedList<T> : IEnumerable<T>
     {
         /// <summary>
-        /// Gets number of length of list.
+        /// Gets length of list.
         /// </summary>
         public int Length { get; }
 
@@ -27,8 +27,8 @@ namespace Structures.DoNotChange
         /// Method for inserting an element in at a specific index.
         /// </summary>
         /// <param name="index">Index for inserting an element.</param>
-        /// <param name="e">The element for inserting.</param>
-        void AddAt(int index, T e);
+        /// <param name="item">The element for inserting.</param>
+        void AddAt(int index, T item);
 
         /// <summary>
         /// Remove item from list.
