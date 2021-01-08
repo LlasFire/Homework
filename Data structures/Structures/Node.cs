@@ -21,15 +21,13 @@ namespace Structures
         /// Initializes a new instance of the <see cref="Node{T}"/> class.
         /// </summary>
         /// <param name="data">Data of current node.</param>
-        /// <param name="index">The index of current node.</param>
         /// <param name="nextNode">Next node.</param>
         /// <param name="previousNode">Previous node.</param>
-        public Node(T data, int index, Node<T> previousNode = null, Node<T> nextNode = null)
+        public Node(T data, Node<T> previousNode = null, Node<T> nextNode = null)
         {
             this.Data = data;
             this.NextNode = nextNode;
             this.PreviousNode = previousNode;
-            this.Index = index;
         }
 
         /// <summary>
@@ -46,10 +44,5 @@ namespace Structures
         /// Gets or sets the "pointer" on previous node in List.
         /// </summary>
         public Node<T> PreviousNode { get; set; }
-
-        /// <summary>
-        /// Gets or sets item index in the list.
-        /// </summary>
-        public int Index { get; set; }
     }
 }
