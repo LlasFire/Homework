@@ -4,76 +4,29 @@
 
 namespace Structures
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Structures.DoNotChange;
 
     /// <summary>
     /// Implementation of my owm DoublyLinkedList.
     /// </summary>
     /// <typeparam name="T">Every structure in C#.</typeparam>
-    public class DoublyLinkedList<T> : IDoublyLinkedList<T>
+    public class DoublyLinkedList<T> : ParentEnumerable<T>, IDoublyLinkedList<T>
     {
-        private const int SecondIndex = 1;
-
-        private Node<T> head;
-        private Node<T> root;
-
         /// <inheritdoc/>
-        public int Length { get; private set; }
-
-        /// <summary>
-        /// Gets the last index of list.
-        /// </summary>
-        public int LastIndex => this.Length - 1;
-
-        /// <inheritdoc/>
-        public void Add(T item)
-        {
-            if (this.Length == default)
-            {
-                var newNode = new Node<T>(item);
-                this.root = newNode;
-                this.head = newNode;
-            }
-            else if (this.Length == SecondIndex)
-            {
-                var newNode = new Node<T>(item, this.root);
-                this.head = newNode;
-                this.root.NextNode = this.head;
-            }
-            else
-            {
-                var newNode = new Node<T>(item, this.head);
-                this.head.NextNode = newNode;
-                this.head = newNode;
-            }
-
-            this.Length++;
-        }
+        public void Add(T item) => this.Push(item);
 
         /// <inheritdoc/>
         public void AddAt(int index, T item)
         {
-            this.ValidateIndex(index, this.Length);
-
             if (index == this.Length)
             {
-                this.Add(item);
+                this.Push(item);
                 return;
             }
 
-            var currentNode = this.head;
-            var counter = this.LastIndex;
-            while (counter > index)
-            {
-                currentNode = currentNode.PreviousNode;
-                counter--;
-            }
-
+            var currentNode = this.FindNodeByIndex(index);
             var newNode = new Node<T>(item, currentNode.PreviousNode, currentNode);
+
             currentNode.PreviousNode = newNode;
             this.Length++;
         }
@@ -81,58 +34,24 @@ namespace Structures
         /// <inheritdoc/>
         public T ElementAt(int index)
         {
-            this.ValidateIndex(index, this.LastIndex);
-
-            Node<T> needNode;
-            int counter;
-            if (this.StartNodeIsHead(index))
-            {
-                needNode = this.head;
-                counter = this.LastIndex;
-
-                while (counter != index)
-                {
-                    needNode = needNode.PreviousNode;
-                    counter--;
-                }
-            }
-            else
-            {
-                needNode = this.root;
-                counter = default;
-
-                while (counter != index)
-                {
-                    needNode = needNode.NextNode;
-                    counter++;
-                }
-            }
-
+            var needNode = this.FindNodeByIndex(index);
             return needNode.Data;
         }
 
         /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator()
-        {
-            return new CustomEnumerator<T>(this, this.root);
-        }
-
-        /// <inheritdoc/>
-        [SuppressMessage("Major Code Smell", "S112:General exceptions should never be thrown", Justification = "It's need for test case")]
         public void Remove(T item)
         {
-            if (this.root is null)
-            {
-                throw new IndexOutOfRangeException();
-            }
+            this.ValidateIfListEmpty();
 
-            var currentItem = this.root;
+            var currentItem = this.Root;
+            var counter = default(int);
 
             while (!currentItem.Data.Equals(item))
             {
                 currentItem = currentItem.NextNode;
+                counter++;
 
-                if (currentItem is null)
+                if (counter == this.Length)
                 {
                     return;
                 }
@@ -140,110 +59,18 @@ namespace Structures
 
             if (currentItem.Data.Equals(item))
             {
-                if (this.Length == SecondIndex)
-                {
-                    this.root = null;
-                    this.head = null;
-                }
-                else if (this.Length == 2)
-                {
-                    this.head.PreviousNode = null;
-                    this.root = this.head;
-                }
-                else
-                {
-                    if (currentItem.PreviousNode is null)
-                    {
-                        this.root = currentItem.NextNode;
-                        this.root.PreviousNode = null;
-                    }
-                    else if (currentItem.NextNode is null)
-                    {
-                        this.head = currentItem.PreviousNode;
-                        this.head.NextNode = null;
-                    }
-                    else
-                    {
-                        currentItem.NextNode.PreviousNode = currentItem.PreviousNode;
-                        currentItem.PreviousNode.NextNode = currentItem.NextNode;
-                    }
-                }
-
-                this.Length--;
+                this.RemoveNode(currentItem);
             }
         }
 
         /// <inheritdoc/>
         public T RemoveAt(int index)
         {
-            this.ValidateIndex(index, this.LastIndex);
+            var needNode = this.FindNodeByIndex(index);
 
-            Node<T> needNode;
-            int counter;
-            if (this.StartNodeIsHead(index))
-            {
-                needNode = this.head;
-                counter = this.LastIndex;
-
-                while (counter != index)
-                {
-                    needNode = needNode.PreviousNode;
-                    counter--;
-                }
-            }
-            else
-            {
-                needNode = this.root;
-                counter = default;
-
-                while (counter != index)
-                {
-                    needNode = needNode.NextNode;
-                    counter++;
-                }
-            }
-
-            if (needNode.PreviousNode is null)
-            {
-                this.root = needNode.NextNode;
-                this.root.PreviousNode = null;
-            }
-            else if (needNode.NextNode is null)
-            {
-                this.head = needNode.PreviousNode;
-                this.head.NextNode = null;
-            }
-            else
-            {
-                needNode.NextNode.PreviousNode = needNode.PreviousNode;
-                needNode.PreviousNode.NextNode = needNode.NextNode;
-            }
-
-            this.Length--;
+            this.RemoveNode(needNode);
 
             return needNode.Data;
-        }
-
-        /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-
-        private bool StartNodeIsHead(int index)
-        {
-            return Math.Abs(index - this.Length) >= Math.Abs(index - default(int));
-        }
-
-        [SuppressMessage("Major Code Smell", "S112:General exceptions should never be thrown", Justification = "It's need for test case")]
-        private void ValidateIndex(int index, int length)
-        {
-            if (index > length ||
-                index < default(int) ||
-                (this.head is null && this.root is null))
-            {
-                throw new IndexOutOfRangeException();
-            }
         }
     }
 }

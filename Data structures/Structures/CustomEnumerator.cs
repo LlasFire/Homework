@@ -14,8 +14,8 @@ namespace Structures
     /// <typeparam name="T">Every type in C#.</typeparam>
     internal class CustomEnumerator<T> : IEnumerator<T>
     {
-        private readonly DoublyLinkedList<T> list;
-        private readonly Node<T> root;
+        private ParentEnumerable<T> list;
+        private Node<T> currentNode;
         private bool disposedValue;
         private int iterator = -1;
 
@@ -23,11 +23,11 @@ namespace Structures
         /// Initializes a new instance of the <see cref="CustomEnumerator{T}"/> class.
         /// </summary>
         /// <param name="list">Implemented list.</param>
-        /// <param name="root">The root node of list.</param>
-        public CustomEnumerator(DoublyLinkedList<T> list, Node<T> root)
+        /// <param name="root">The currentNode node of list.</param>
+        public CustomEnumerator(ParentEnumerable<T> list, Node<T> root)
         {
             this.list = list;
-            this.root = root;
+            this.currentNode = root;
         }
 
         /// <inheritdoc/>
@@ -35,16 +35,10 @@ namespace Structures
         {
             get
             {
-                var currentNode = this.root;
-                var startIndex = default(int);
+                var returnNode = this.currentNode;
+                this.currentNode = this.currentNode.NextNode;
 
-                while (this.iterator != startIndex)
-                {
-                    currentNode = currentNode.NextNode;
-                    startIndex++;
-                }
-
-                return currentNode.Data;
+                return returnNode.Data;
             }
         }
 
@@ -81,10 +75,18 @@ namespace Structures
         /// <param name="disposing">Disposing flag.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposedValue)
+            if (this.disposedValue)
             {
-                this.disposedValue = true;
+                return;
             }
+
+            if (disposing)
+            {
+                this.list = null;
+                this.currentNode = null;
+            }
+
+            this.disposedValue = true;
         }
     }
 }

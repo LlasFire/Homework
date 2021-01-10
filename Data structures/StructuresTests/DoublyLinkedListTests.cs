@@ -10,329 +10,434 @@ namespace StructuresTests
     using Xunit;
 
     /// <summary>
-    /// Class that conntains all of tests cases for my own DoublyLinkedList.
+    /// Class that conntains all of tests for my own DoublyLinkedList class.
     /// </summary>
     public class DoublyLinkedListTests
     {
         /// <summary>
-        /// Test method.
+        /// Test for Lehgth property.
         /// </summary>
         [Fact]
         public void Should_Increment_Length_Of_The_List_When_Element_Added()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(2);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                2,
+            };
 
+            // Act
             var actualLength = list.Length;
 
-            actualLength.Should().Be(2);
+            // Assert
+            actualLength.Should()
+                        .Be(2);
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for ElementAt method.
         /// </summary>
         [Fact]
         public void Should_Return_Element_At_The_Specified_Position()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(5);
-            list.Add(6);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                5,
+                6,
+            };
 
+            // Act
             var actualElement = list.ElementAt(1);
 
-            actualElement.Should().Be(6);
+            // Assert
+            actualElement.Should()
+                         .Be(6);
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for ElementAt method.
         /// </summary>
         [Fact]
         public void Should_Throw_IndexOutOfRangeException_If_List_Is_Empty()
         {
+            // Arrange
             var list = new DoublyLinkedList<int>();
 
+            // Act
             Action action = () => list.ElementAt(0);
 
-            action.Should().ThrowExactly<IndexOutOfRangeException>();
+            // Assert
+            action.Should()
+                  .ThrowExactly<IndexOutOfRangeException>();
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for ElementAt method.
         /// </summary>
         [Fact]
         public void Should_Throw_IndexOutOfRangeException_If_Index_Bigger_Or_Equal_Than_Length()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(3);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                3,
+            };
 
+            // Act
             Action action = () => list.ElementAt(2);
 
-            action.Should().ThrowExactly<IndexOutOfRangeException>();
+            // Assert
+            action.Should()
+                  .ThrowExactly<IndexOutOfRangeException>();
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for ElementAt method.
         /// </summary>
         [Fact]
         public void Should_Throw_IndexOutOfRangeException_If_Index_Less_Than_Zero()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(3);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                3,
+            };
 
+            // Act
             Action action = () => list.ElementAt(-2);
 
-            action.Should().ThrowExactly<IndexOutOfRangeException>();
+            // Assert
+            action.Should()
+                  .ThrowExactly<IndexOutOfRangeException>();
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for AddAt method.
         /// </summary>
         [Fact]
         public void Should_Insert_Element_At_Specified_Position()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(3);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                3,
+            };
 
+            // Act
             list.AddAt(1, 5);
+
+            // Assert
             var actualElement = list.ElementAt(1);
 
-            actualElement.Should().Be(5);
+            actualElement.Should()
+                         .Be(5);
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for AddAt method.
         /// </summary>
         [Fact]
         public void Should_Increment_Length()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+            };
 
+            // Act
             list.AddAt(1, 5);
+
+            // Assert
             var actualElement = list.Length;
 
-            actualElement.Should().Be(2);
+            actualElement.Should()
+                         .Be(2);
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for AddAt method.
         /// </summary>
         [Fact]
         public void Should_Insert_Element_At_The_End_Of_The_List()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(6);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                6,
+            };
 
+            // Act
             list.AddAt(2, 8);
+
+            // Assert
             var actualElement = list.ElementAt(2);
 
-            actualElement.Should().Be(8);
+            actualElement.Should()
+                         .Be(8);
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for AddAt method.
         /// </summary>
         [Fact]
         public void Should_Insert_Element_At_The_Beginning_Of_The_List()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(6);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                6,
+            };
 
+            // Act
             list.AddAt(0, 8);
+
+            // Assert
             var actualElement = list.ElementAt(0);
 
-            actualElement.Should().Be(8);
+            actualElement.Should()
+                         .Be(8);
         }
 
         /// <summary>
-        /// Test method.
-        /// </summary>
-        [Fact]
-        public void Should_Throw_IndexOutOfRangeException_If_Index_Bigger_Than_Length()
-        {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(6);
-
-            Action action = () => list.ElementAt(2);
-
-            action.Should().ThrowExactly<IndexOutOfRangeException>();
-        }
-
-        /// <summary>
-        /// Test method.
+        /// Test for Remove method.
         /// </summary>
         [Fact]
         public void Should_Remove_First_Occurance_In_The_List()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(2);
-            list.Add(1);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                2,
+                1,
+            };
 
+            // Act
             list.Remove(1);
 
-            list.Should().BeEquivalentTo(new[] { 2, 1 });
+            // Assert
+            list.Should()
+                .BeEquivalentTo(new[] { 2, 1 });
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for Remove method.
         /// </summary>
         [Fact]
         public void Should_Decrement_Length_Of_The_List_If_Element_Removed()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(2);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                2,
+            };
 
+            // Act
             list.Remove(2);
-            var actualLength = list.Length;
 
-            actualLength.Should().Be(1);
+            // Assert
+            list.Length.Should()
+                       .Be(1);
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for Remove method.
         /// </summary>
         [Fact]
         public void Should_Not_Change_Collection_If_It_Does_Not_Contain_Specified_Item()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(2);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                2,
+            };
 
+            // Act
             list.Remove(4);
 
-            list.Should().BeEquivalentTo(new[] { 1, 2 });
+            // Assert
+            list.Should()
+                .BeEquivalentTo(new[] { 1, 2 });
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for Lehgth property.
         /// </summary>
         [Fact]
         public void Should_Not_Decrement_Length_Of_The_List_If_It_Does_Not_Contain_Specified_Item()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(2);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                2,
+            };
 
+            // Act
             list.Remove(4);
-            var actualLength = list.Length;
 
-            actualLength.Should().Be(2);
+            // Assert
+            list.Length.Should()
+                       .Be(2);
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for RemoveAt method.
         /// </summary>
         [Fact]
         public void Should_Remove_Element_At_The_Specified_Position()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(5);
-            list.Add(6);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                5,
+                6,
+            };
 
+            // Act
             list.RemoveAt(1);
 
-            list.Should().BeEquivalentTo(new[] { 5 });
+            // Assert
+            list.Should()
+                .BeEquivalentTo(new[] { 5 });
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for RemoveAt method.
         /// </summary>
         [Fact]
         public void Should_Return_Removing_Item()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(2);
-            list.Add(5);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                2,
+                5,
+            };
 
+            // Act
             var removedItem = list.RemoveAt(1);
 
-            removedItem.Should().Be(5);
+            // Assert
+            removedItem.Should()
+                       .Be(5);
         }
 
         /// <summary>
-        /// Test method.
+        /// Test for Lehgth property.
         /// </summary>
         [Fact]
         public void Should_Decrement_Length_Of_The_List_If_Element_Removed_Using_RemoveAt()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(1);
-            list.Add(2);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                1,
+                2,
+            };
 
+            // Act
             list.RemoveAt(1);
-            var actualLength = list.Length;
 
-            actualLength.Should().Be(1);
+            // Assert
+            list.Length.Should()
+                       .Be(1);
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for RemoveAt method.
         /// </summary>
         [Fact]
         public void Should_Throw_IndexOutOfRangeException_For_RemoveAt_If_List_Is_Empty()
         {
+            // Arrange
             var list = new DoublyLinkedList<int>();
 
+            // Act
             Action action = () => list.RemoveAt(0);
 
-            action.Should().ThrowExactly<IndexOutOfRangeException>();
+            // Assert
+            action.Should()
+                  .ThrowExactly<IndexOutOfRangeException>();
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for RemoveAt method.
         /// </summary>
         [Fact]
         public void Should_Throw_IndexOutOfRangeException_If_Index_For_RemoveAt_Bigger_Or_Equal_Than_Length()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(2);
-            list.Add(5);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                2,
+                5,
+            };
 
+            // Act
             Action action = () => list.RemoveAt(2);
 
-            action.Should().ThrowExactly<IndexOutOfRangeException>();
+            // Assert
+            action.Should()
+                  .ThrowExactly<IndexOutOfRangeException>();
         }
 
         /// <summary>
-        /// Test method.
+        /// Negative test for RemoveAt method.
         /// </summary>
         [Fact]
         public void Should_Throw_IndexOutOfRangeException_If_Index_For_RemoveAt_Less_Than_Zero()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(2);
-            list.Add(5);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                2,
+                5,
+            };
 
+            // Act
             Action action = () => list.RemoveAt(-1);
 
-            action.Should().ThrowExactly<IndexOutOfRangeException>();
+            // Assert
+            action.Should()
+                  .ThrowExactly<IndexOutOfRangeException>();
         }
 
         /// <summary>
-        /// Test method.
+        /// Test method checked ability foreach loop for my collection.
         /// </summary>
         [Fact]
         public void Should_Iterate_In_ForEach_Loop()
         {
-            var list = new DoublyLinkedList<int>();
-            list.Add(2);
-            list.Add(5);
-            list.Add(42);
+            // Arrange
+            var list = new DoublyLinkedList<int>
+            {
+                2,
+                5,
+                42,
+            };
 
             int i = 0;
+
+            // Act
             foreach (var item in list)
             {
-                item.Should().Be(list.ElementAt(i));
+                var checkItem = list.ElementAt(i);
                 i++;
+
+                // Assert
+                item.Should()
+                    .Be(checkItem);
             }
         }
     }

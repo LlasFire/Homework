@@ -8,7 +8,7 @@ namespace Structures
     /// Node class for DoubleLinkedList.
     /// </summary>
     /// <typeparam name="T">Type of node.</typeparam>
-    internal sealed class Node<T>
+    public sealed class Node<T>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Node{T}"/> class.

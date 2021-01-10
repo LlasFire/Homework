@@ -11,30 +11,37 @@ namespace Structures
     /// One of implementation for my own HybridFlowProcessor.
     /// </summary>
     /// <typeparam name="T">Every structure in C#.</typeparam>
-    public class HybridFlowProcessor<T> : IHybridFlowProcessor<T>
+    public class HybridFlowProcessor<T> : ParentEnumerable<T>, IHybridFlowProcessor<T>
     {
         /// <inheritdoc/>
         public T Dequeue()
         {
-            throw new NotImplementedException();
+            if (this.Length == default)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var needItem = this.Root;
+            this.RemoveNode(needItem);
+
+            return needItem.Data;
         }
 
         /// <inheritdoc/>
-        public void Enqueue(T item)
-        {
-            throw new NotImplementedException();
-        }
+        public void Enqueue(T item) => this.Push(item);
 
         /// <inheritdoc/>
         public T Pop()
         {
-            throw new NotImplementedException();
-        }
+            if (this.Length == default)
+            {
+                throw new InvalidOperationException();
+            }
 
-        /// <inheritdoc/>
-        public void Push(T item)
-        {
-            throw new NotImplementedException();
+            var needItem = this.Head;
+            this.RemoveNode(needItem);
+
+            return needItem.Data;
         }
     }
 }
