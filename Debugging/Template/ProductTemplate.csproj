@@ -8,4 +8,11 @@
     <PackageReference Include="Unity.NetCore" Version="4.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="8.16.0.25740">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>none</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

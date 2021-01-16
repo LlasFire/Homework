@@ -10,4 +10,11 @@
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="8.16.0.25740">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>none</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
