@@ -19,7 +19,13 @@ namespace LcdStringsTests
         /// </summary>
         /// <param name="value">TestCase string.</param>
         /// <returns>Int value.</returns>
-        [TestCase(0, ExpectedResult = "._./r/n|.|/r/n|_|")]
+        [TestCase(0, ExpectedResult = "._.\r\n|.|\r\n|_|\r\n")]
+        [TestCase(7, ExpectedResult = "._.\r\n..|\r\n..|\r\n")]
+        [TestCase(10, ExpectedResult = "...._.\r\n..||.|\r\n..||_|\r\n")]
+        [TestCase(-0, ExpectedResult = "._.\r\n|.|\r\n|_|\r\n")]
+        [TestCase(1750, ExpectedResult = "...._.._.._.\r\n..|..||_.|.|\r\n..|..|._||_|\r\n")]
+        [TestCase(-5581, ExpectedResult = "...._.._.._....\r\n._.|_.|_.|_|..|\r\n...._|._||_|..|\r\n")]
+        [TestCase(int.MinValue, ExpectedResult = "...._........_....._.._.._....._.\r\n._.._|..||_|..||_||_|._||_.|_||_|\r\n...|_...|..|..|..||_|._||_|..||_|\r\n")]
         public string Translate_ValidNumber_ReturnsLcdStringValue(int value)
         {
             return this.translator.Translate(value);
