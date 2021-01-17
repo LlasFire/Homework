@@ -71,9 +71,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Structures", "Data structur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StructuresTests", "Data structures\StructuresTests\StructuresTests.csproj", "{3CFE4798-20B8-44E4-AA39-254E9753B877}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LcdDigits", "Unit testing\LcdDigits\LcdDigits.csproj", "{54F76F82-2E43-49F5-89DB-F4FE0D97F534}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Katas", "Unit testing\LcdDigits\Katas.csproj", "{54F76F82-2E43-49F5-89DB-F4FE0D97F534}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LcdStringsTests", "Unit testing\LcdStringsTests\LcdStringsTests.csproj", "{5A1E8B5A-25F7-453F-9E2A-B647140D2619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KatasTests", "Unit testing\LcdStringsTests\KatasTests.csproj", "{5A1E8B5A-25F7-453F-9E2A-B647140D2619}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

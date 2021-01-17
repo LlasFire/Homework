@@ -2,9 +2,9 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace LcdStringsTests
+namespace KatasTests
 {
-    using LcdDigits;
+    using Katas;
     using NUnit.Framework;
 
     /// <summary>
@@ -17,8 +17,8 @@ namespace LcdStringsTests
         /// <summary>
         /// Test by valid values.
         /// </summary>
-        /// <param name="value">TestCase string.</param>
-        /// <returns>Int value.</returns>
+        /// <param name="value">TestCase int.</param>
+        /// <returns>LSD digit string value.</returns>
         [TestCase(0, ExpectedResult = "._.\r\n|.|\r\n|_|\r\n")]
         [TestCase(7, ExpectedResult = "._.\r\n..|\r\n..|\r\n")]
         [TestCase(10, ExpectedResult = "...._.\r\n..||.|\r\n..||_|\r\n")]

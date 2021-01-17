@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace LcdDigits
+namespace Katas
 {
     /// <summary>
     /// Interface that contains methods for translate numbers in LCD strings.

@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LcdDigits\LcdDigits.csproj" />
+    <ProjectReference Include="..\LcdDigits\Katas.csproj" />
   </ItemGroup>
 
   <ItemGroup>

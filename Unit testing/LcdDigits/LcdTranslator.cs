@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace LcdDigits
+namespace Katas
 {
     using System;
     using System.Collections.Generic;
