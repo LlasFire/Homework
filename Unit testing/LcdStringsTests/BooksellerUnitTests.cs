@@ -23,7 +23,7 @@ namespace KatasTests
         /// <param name="value">TestCase string.</param>
         /// <param name="expectedSum">Expected sum for assert.</param>
         [TestCaseSource(nameof(GetTestCases))]
-        public void Translate_ValidNumber_ReturnsLcdStringValue(List<HarryPotterBook> value, decimal expectedSum)
+        public void TotalSumWithDiscount_ValidList_TotalSumShouldBeCorrect(List<HarryPotterBook> value, decimal expectedSum)
         {
             // Act
             var totalSum = this.seller.TotalSumWithDiscount(value);
@@ -46,7 +46,88 @@ namespace KatasTests
                     HarryPotterBook.ChamberOfSecrets,
                     HarryPotterBook.ChamberOfSecrets,
                 },
-                15.2M,
+                16M,
+            };
+
+            yield return new object[]
+            {
+                new List<HarryPotterBook>
+                {
+                    HarryPotterBook.PhilosophersStone,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.PrisonerOfAzkaban,
+                    HarryPotterBook.GobletOfFire,
+                    HarryPotterBook.OrderOfThePhoenix,
+                    HarryPotterBook.HalfBloodPrince,
+                    HarryPotterBook.DeathlyHallows,
+                },
+                42M,
+            };
+
+            yield return new object[]
+            {
+                new List<HarryPotterBook>
+                {
+                    HarryPotterBook.PhilosophersStone,
+                    HarryPotterBook.PhilosophersStone,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.PrisonerOfAzkaban,
+                    HarryPotterBook.PrisonerOfAzkaban,
+                    HarryPotterBook.GobletOfFire,
+                    HarryPotterBook.OrderOfThePhoenix,
+                },
+                51.6M,
+            };
+
+            yield return new object[]
+            {
+                new List<HarryPotterBook>
+                {
+                    HarryPotterBook.PhilosophersStone,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.PrisonerOfAzkaban,
+                    HarryPotterBook.GobletOfFire,
+                    HarryPotterBook.OrderOfThePhoenix,
+                    HarryPotterBook.HalfBloodPrince,
+                    HarryPotterBook.DeathlyHallows,
+                    HarryPotterBook.PhilosophersStone,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.PrisonerOfAzkaban,
+                    HarryPotterBook.GobletOfFire,
+                    HarryPotterBook.OrderOfThePhoenix,
+                    HarryPotterBook.HalfBloodPrince,
+                    HarryPotterBook.DeathlyHallows,
+                },
+                84M,
+            };
+
+            yield return new object[]
+            {
+                new List<HarryPotterBook>
+                {
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                },
+                56M,
+            };
+
+            yield return new object[]
+            {
+                new List<HarryPotterBook>
+                {
+                    HarryPotterBook.PhilosophersStone,
+                    HarryPotterBook.PhilosophersStone,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                    HarryPotterBook.ChamberOfSecrets,
+                },
+                38.4M,
             };
         }
     }

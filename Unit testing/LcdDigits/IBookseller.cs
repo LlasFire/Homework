@@ -13,11 +13,6 @@ namespace Katas
     public interface IBookseller
     {
         /// <summary>
-        /// Price of one book.
-        /// </summary>
-        public const decimal BookCost = 8;
-
-        /// <summary>
         /// Get total sum with discount for buying some books.
         /// </summary>
         /// <param name="bookList">Lisst of books in basket.</param>
