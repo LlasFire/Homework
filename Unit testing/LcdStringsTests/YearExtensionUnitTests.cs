@@ -19,7 +19,7 @@ namespace KatasTests
         /// </summary>
         /// <param name="year">TestCase year int.</param>
         /// <returns>Is year leap or not.</returns>
-        [TestCase(0, ExpectedResult = false)]
+        [TestCase(0, ExpectedResult = true)]
         [TestCase(4, ExpectedResult = true)]
         [TestCase(900, ExpectedResult = false)]
         [TestCase(1988, ExpectedResult = true)]
