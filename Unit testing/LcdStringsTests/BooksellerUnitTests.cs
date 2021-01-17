@@ -4,6 +4,7 @@
 
 namespace KatasTests
 {
+    using System;
     using System.Collections.Generic;
     using FluentAssertions;
     using Katas;
@@ -31,6 +32,24 @@ namespace KatasTests
             // Assert
             totalSum.Should()
                     .Be(expectedSum);
+        }
+
+        /// <summary>
+        /// Test with null parameter.
+        /// </summary>
+        [Test]
+        public void TotalSumWithDiscount_ListIsNull_ThrowArgumentNullException()
+        {
+            // Arrange
+            List<HarryPotterBook> list = null;
+
+            // Act
+            Action action = () => this.seller.TotalSumWithDiscount(list);
+
+            // Assert
+            action.Should()
+                  .Throw<ArgumentNullException>()
+                  .WithMessage("Value cannot be null. (Parameter 'bookList')");
         }
 
         /// <summary>
