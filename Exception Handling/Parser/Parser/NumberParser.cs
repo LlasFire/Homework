@@ -44,6 +44,9 @@ namespace Parser
                 // Defining a character from the end of the array.
                 switch (charArray[i - 1])
                 {
+                    case '0':
+                        tempValue = 0;
+                        break;
                     case '1':
                         tempValue = 1;
                         break;
