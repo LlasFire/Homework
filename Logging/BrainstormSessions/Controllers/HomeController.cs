@@ -10,6 +10,7 @@ namespace BrainstormSessions.Controllers
     using BrainstormSessions.ClientModels;
     using BrainstormSessions.Core.Interfaces;
     using BrainstormSessions.Core.Model;
+    using BrainstormSessions.Infrastructure;
     using BrainstormSessions.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
@@ -60,6 +61,8 @@ namespace BrainstormSessions.Controllers
             {
                 throw new ArgumentNullException(nameof(model));
             }
+
+            Logger.Log.Error(model);
 
             if (!this.ModelState.IsValid)
             {

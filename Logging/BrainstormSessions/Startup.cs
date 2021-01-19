@@ -37,6 +37,34 @@ namespace BrainstormSessions
         }
 
         /// <summary>
+        /// Method for configuring application.
+        /// </summary>
+        /// <param name="app">ApplicationBuilder interface.</param>
+        /// <param name="env">WebHostEnvironment interface.</param>
+        /// <param name="serviceProvider">ServiceProvider interface.</param>
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
+        {
+            Logger.InitLogger();
+            if (env.IsDevelopment())
+            {
+                var repository = serviceProvider.GetRequiredService<IBrainstormSessionRepository>();
+
+                InitializeDatabaseAsync(repository).Wait();
+            }
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        /// <summary>
         /// Method for initialize database.
         /// </summary>
         /// <param name="repo">Interface of repository.</param>
@@ -77,33 +105,6 @@ namespace BrainstormSessions
             session.AddIdea(idea);
 
             return session;
-        }
-
-        /// <summary>
-        /// Method for configuring application.
-        /// </summary>
-        /// <param name="app">ApplicationBuilder interface.</param>
-        /// <param name="env">WebHostEnvironment interface.</param>
-        /// <param name="serviceProvider">ServiceProvider interface.</param>
-        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
-        {
-            if (env.IsDevelopment())
-            {
-                var repository = serviceProvider.GetRequiredService<IBrainstormSessionRepository>();
-
-                InitializeDatabaseAsync(repository).Wait();
-            }
-
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
 }

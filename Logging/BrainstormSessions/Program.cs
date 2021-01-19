@@ -6,6 +6,7 @@ namespace BrainstormSessions
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// The main class.
@@ -31,6 +32,9 @@ namespace BrainstormSessions
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                }).ConfigureLogging(builder =>
+                {
+                    builder.AddLog4Net("log4net.config");
                 });
     }
 }
