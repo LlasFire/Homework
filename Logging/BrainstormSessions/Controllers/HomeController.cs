@@ -46,6 +46,7 @@ namespace BrainstormSessions.Controllers
                 IdeaCount = session.Ideas.Count,
             });
 
+            Logger.Log.Info(model);
             return this.View(model);
         }
 
