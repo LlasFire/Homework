@@ -6,6 +6,7 @@ namespace BrainstormSessions.Controllers
 {
     using System.Threading.Tasks;
     using BrainstormSessions.Core.Interfaces;
+    using BrainstormSessions.Infrastructure;
     using BrainstormSessions.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,7 @@ namespace BrainstormSessions.Controllers
         /// <returns>Session model.</returns>
         public async Task<IActionResult> Index(int? id)
         {
+            Logger.Log.Debug($"Method {nameof(this.Index)}, id for search {id}");
             if (!id.HasValue)
             {
                 return this.RedirectToAction(
@@ -52,6 +54,7 @@ namespace BrainstormSessions.Controllers
                 Id = session.Id,
             };
 
+            Logger.Log.Debug($"Method {nameof(this.Index)}, model: {viewModel}");
             return this.View(viewModel);
         }
     }

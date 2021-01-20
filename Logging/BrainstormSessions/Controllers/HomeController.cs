@@ -63,10 +63,9 @@ namespace BrainstormSessions.Controllers
                 throw new ArgumentNullException(nameof(model));
             }
 
-            Logger.Log.Error(model);
-
             if (!this.ModelState.IsValid)
             {
+                Logger.Log.Warn($"Modelstate in method {nameof(this.Index)} has {this.ModelState.ErrorCount} errors");
                 return this.BadRequest(this.ModelState);
             }
             else

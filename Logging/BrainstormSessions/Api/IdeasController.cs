@@ -11,6 +11,7 @@ namespace BrainstormSessions.Api
     using BrainstormSessions.ClientModels;
     using BrainstormSessions.Core.Interfaces;
     using BrainstormSessions.Core.Model;
+    using BrainstormSessions.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
@@ -137,6 +138,7 @@ namespace BrainstormSessions.Api
 
             if (!this.ModelState.IsValid)
             {
+                Logger.Log.Error($"Modelstate in method {nameof(this.CreateActionResult)} has {this.ModelState.ErrorCount} errors");
                 return this.BadRequest(this.ModelState);
             }
 

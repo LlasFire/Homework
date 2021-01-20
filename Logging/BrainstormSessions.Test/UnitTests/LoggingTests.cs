@@ -93,7 +93,7 @@ namespace BrainstormSessions.Test.UnitTests
             controller.ModelState.AddModelError("error", "some error");
 
             // Act
-            await controller.CreateActionResult(model: null);
+            await controller.CreateActionResult(model: new NewIdeaModel());
 
             // Assert
             var logEntries = this.appender.GetEvents();
