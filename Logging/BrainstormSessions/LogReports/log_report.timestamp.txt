@@ -1,0 +1,20 @@
+Level	CountMessages
+INFO	118
+ERROR	2
+
+Statistics:
+-----------
+Elements processed: 120
+Elements output:    2
+Execution time:     0.00 seconds
+
+Time	Level	Message	Exception
+2021-01-21 22:02:32	ERROR	{BrainstormSessions.ViewModels.StormSessionViewModel, BrainstormSessions.ViewModels.StormSessionViewModel}	
+2021-01-21 22:03:07	ERROR	{BrainstormSessions.ViewModels.StormSessionViewModel, BrainstormSessions.ViewModels.StormSessionViewModel}	
+
+Statistics:
+-----------
+Elements processed: 120
+Elements output:    2
+Execution time:     0.01 seconds
+
