@@ -5,8 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Logs\Emails\Do_Not_Remove" />
+    <None Remove="Report Generator.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Logs\Emails\Do_Not_Remove">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Report Generator.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
 </Project>

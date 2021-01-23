@@ -20,3 +20,6 @@ dotnet_diagnostic.CA1052.severity = silent
 
 # S1118: Utility classes should not have public constructors
 dotnet_diagnostic.S1118.severity = silent
+
+# IDE0058: Expression value is never used
+dotnet_diagnostic.IDE0058.severity = none

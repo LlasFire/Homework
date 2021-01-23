@@ -39,12 +39,13 @@ namespace BrainstormSessions.Controllers
             var sessionList = await this.sessionRepository.ListAsync();
 
             var model = sessionList.Select(session => new StormSessionViewModel()
-            {
-                Id = session.Id,
-                DateCreated = session.DateCreated,
-                Name = session.Name,
-                IdeaCount = session.Ideas.Count,
-            });
+                                            {
+                                                Id = session.Id,
+                                                DateCreated = session.DateCreated,
+                                                Name = session.Name,
+                                                IdeaCount = session.Ideas.Count,
+                                            })
+                                    .ToList();
 
             Logger.Log.Info(model);
             return this.View(model);
